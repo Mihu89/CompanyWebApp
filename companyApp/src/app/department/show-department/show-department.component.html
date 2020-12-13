@@ -1,1 +1,56 @@
-<p>show-department works!</p>
+<button type="button" class="btn btn-primary flaot-right m-2" 
+data-toggle="modal" data-target="#customModal"
+(click)="addDepartment()" data-backdrop="static" data-keyboard="false">Add Department</button>
+
+<!-- Modal -->
+<div class="modal fade" id="customModal" tabindex="-1" role="dialog" aria-labelledby="customModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customModalLabel">{{modalTitle}}</h5>
+                <button type="button" class="close" dta-dismiss="modal" aria-label="Close"
+                (click)="closeModal()"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <app-add-edit-department [department]="department" *ngIf="modalOpen"></app-add-edit-department>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <div class="d-flex flex-row">
+                    <input type="text" [(ngModel)]="departmentIdFilter" class="form-control"
+                    (keyup)="FilterDepartment()" placeholder="Filter">
+                    <!-- Sorting -->
+                </div>
+                DepartmentId
+            </th>
+            <th>
+                <div class="d-flex flex-row">
+                    <input type="text" [(ngModel)]="departmentNameFilter" class="form-control"
+                    (keyup)="FilterDepartment()" placeholder="Filter">
+                    <!-- Sorting -->
+                </div>
+                DepartmentName 
+            </th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let departmentItem of departmentList">
+            <td>{{departmentItem.DepartmentId}}</td>
+            <td>{{departmentItem.DepartmentName}}</td>
+            <td>
+                <button type="button" class="btn btn-light mr-1" data-toggle="model"
+                data-target="#customModal" (click)="editDepartment(departmentItem)"
+                data-backdrop="static" data-keyboard="false">Edit</button>
+                <button type="button" class="btn btn-light mr-1" data-toggle="model"
+                data-target="#customModal" (click)="deleteDepartment(departmentItem)"
+                data-backdrop="static" data-keyboard="false">Delete</button></td>
+        </tr>
+    </tbody>
+</table>

@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { DepartmentComponent } from './department/department.component';
 import { ShowDepartmentComponent } from './department/show-department/show-department.component';
 import { AddEditDepartmentComponent } from './department/add-edit-department/add-edit-department.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { SharedService } from './shared.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,12 @@ import { AddEditDepartmentComponent } from './department/add-edit-department/add
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

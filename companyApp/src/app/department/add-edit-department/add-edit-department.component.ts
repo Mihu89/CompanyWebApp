@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-edit-department',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-edit-department.component.css']
 })
 export class AddEditDepartmentComponent implements OnInit {
-
+@Input() department: any;
   constructor() { }
 
   ngOnInit(): void {
