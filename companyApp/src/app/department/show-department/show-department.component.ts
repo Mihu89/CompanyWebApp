@@ -20,12 +20,15 @@ modalOpen: boolean = false;
   }
 
   addDepartment(){
+
     this.department ={
       departmentId:0,
       departmentName: ''
     };
     this.modalTitle="Add Department";
     this.modalOpen = true;
+    
+    console.log('show ' + this.department.departmentId);
   }
 
   editDepartment(item){
@@ -58,7 +61,29 @@ modalOpen: boolean = false;
     })
   }
 
-  FilterDepartment(){
+  filterDepartment(){
 
+    let departIdFilter = this.departmentIdFilter;
+    let departNameFilter = this.departmentNameFilter;
+    this.departmentList = this.allDepartmentsWithoutFilter.filter(function(el){
+      return el.departmentId.toString().toLowerCase().includes(
+        departIdFilter.toString().trim().toLowerCase()
+        )&&
+        el.DepartmentName.toString().toLowerCase().includes(
+          departNameFilter.toString().trim().toLowerCase()
+        );
+    })
   }
+
+  sortDepartment(prop, asc){
+    this.departmentList = this.allDepartmentsWithoutFilter.sort(function(x,y){
+      if(asc){
+        return (x[prop] > y[prop]) ? 1 : ((x[prop] < y[prop]) ? -1 : 0);
+      }else{
+        return (y[prop] > x[prop]) ? 1 : ((y[prop]> x[prop]) ? -1 : 0);
+      }
+    });
+  }
+
+
 }
