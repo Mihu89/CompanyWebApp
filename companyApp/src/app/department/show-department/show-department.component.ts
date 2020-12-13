@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../../shared.service';
 
 @Component({
   selector: 'app-show-department',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowDepartmentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: SharedService) { }
 departmentList: any=[];
 modalTitle: string;
 departmentIdFilter: string='';
@@ -36,6 +37,12 @@ modalOpen: boolean = false;
   deleteDepartment(item){
     if(confirm("Are you sure to delete this department ?")){
       // delete department
+      this.service.deleteDepartment(item.DepartmentId).subscribe(
+        data => {
+          console.log(data.toString());
+          this.refreshDepartmentList();
+        }
+      );
     }
   }
 
@@ -45,9 +52,12 @@ modalOpen: boolean = false;
   }
 
   refreshDepartmentList(){
-
+    this.service.getDepartmentList().subscribe( data => {
+      this.departmentList = data;
+      this.allDepartmentsWithoutFilter = data;
+    })
   }
-  
+
   FilterDepartment(){
 
   }
