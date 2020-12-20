@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../shared.service';
+import { MockSharedService } from '../../mock-shared.service';
 
 @Component({
   selector: 'app-show-department',
@@ -8,7 +9,9 @@ import { SharedService } from '../../shared.service';
 })
 export class ShowDepartmentComponent implements OnInit {
 
-  constructor(private service: SharedService) { }
+  // constructor(private service: SharedService) { }
+  constructor(private service: MockSharedService){}
+
 departmentList: any=[];
 modalTitle: string;
 departmentIdFilter: string='';
@@ -16,8 +19,12 @@ departmentNameFilter: string='';
 allDepartmentsWithoutFilter = [];
 department: any;
 modalOpen: boolean = false;
+
   ngOnInit(): void {
+    console.log('onInit');
+    this.refreshDepartmentList();
   }
+
 
   addDepartment(){
 
@@ -40,12 +47,11 @@ modalOpen: boolean = false;
   deleteDepartment(item){
     if(confirm("Are you sure to delete this department ?")){
       // delete department
-      this.service.deleteDepartment(item.DepartmentId).subscribe(
-        data => {
-          console.log(data.toString());
-          this.refreshDepartmentList();
-        }
-      );
+      // this.service.deleteDepartment(item.DepartmentId).subscribe(
+      //   data => {
+      //     console.log(data.toString());
+      //     this.refreshDepartmentList();
+      //   });
     }
   }
 
@@ -55,10 +61,12 @@ modalOpen: boolean = false;
   }
 
   refreshDepartmentList(){
+    console.log("test");
     this.service.getDepartmentList().subscribe( data => {
       this.departmentList = data;
+      console.log('dl ' + this.departmentList.lenght);
       this.allDepartmentsWithoutFilter = data;
-    })
+    });
   }
 
   filterDepartment(){

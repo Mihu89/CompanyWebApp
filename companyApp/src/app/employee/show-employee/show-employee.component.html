@@ -1,0 +1,49 @@
+<button type="button" class="btn btn-primary float-right m-2"
+(click)="addEmployee()" data-toggle="modal" data-target="employeeModal" 
+data-back-drop="static" data-keyboard="false">Add Employee</button>
+
+<!-- Modal -->
+<div class="modal fade" id="employeeModal" tabindex="-1" role="dialog"
+    aria-labelledby="employeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="employeeModalLabel">{{modalTitle}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                 (click)="closeModal()"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <app-add-edit-employee></app-add-edit-employee>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Department</th>
+            <th>Date Start</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of EmployeeList">
+            <td>{{employee.employeeId}}</td>
+            <td>{{employee.employeeName}}</td>
+            <td>{{employee.department}}</td>
+            <td>{{employee.startDate}}</td>
+            <td>
+                <button type="button" class="btn btn-light mr-1"
+                 data-toggle="modal" data-target="#employeeModal"
+                 (click)="editEmployee(employee)" data-backdrop="static"
+                 data-keyboard="false">Edit</button>
+                 <button type="button" class="btn btn-light mr-1"
+                  (click)="deleteEmployee(employee)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

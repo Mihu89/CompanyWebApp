@@ -9,13 +9,19 @@ import { AddEditDepartmentComponent } from './department/add-edit-department/add
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { SharedService } from './shared.service';
+import { EmployeeComponent } from './employee/employee.component';
+import { ShowEmployeeComponent } from './employee/show-employee/show-employee.component';
+import { AddEditEmployeeComponent } from './employee/add-edit-employee/add-edit-employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DepartmentComponent,
     ShowDepartmentComponent,
-    AddEditDepartmentComponent
+    AddEditDepartmentComponent,
+    EmployeeComponent,
+    ShowEmployeeComponent,
+    AddEditEmployeeComponent
   ],
   imports: [
     BrowserModule,
