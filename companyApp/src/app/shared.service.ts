@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SharedService {
   readonly APIurl = 'http://localhost:50001/api/';
+  readonly photoUrl = 'http://localhost:50001/api/photos/';
 
   constructor(private http: HttpClient) {}
 
@@ -27,26 +28,26 @@ export class SharedService {
   }
 
   getEmployeeList(): Observable<any[]> {
-    return this.http.get<any>(this.APIurl + '/Employee');
+    return this.http.get<any>(this.APIurl + 'employee');
   }
 
   addEmployee(val: any){
-    return this.http.post(this.APIurl + '/Employee', val);
+    return this.http.post(this.APIurl + 'employee', val);
   }
 
   updateEmployee(val: any){
-    return this.http.put(this.APIurl + '/Employee', val);
+    return this.http.put(this.APIurl + 'employee', val);
   }
 
   deleteEmployee(val: any){
-    return this.http.post(this.APIurl + '/Employee/', val);
+    return this.http.post(this.APIurl + 'employee/', val);
   }
 
   getAllDepartmentNames(): Observable<any[]>{
-    return this.http.get<any[]>(this.APIurl + '/Employee/GetAllDepartmentNames');
+    return this.http.get<any[]>(this.APIurl + 'employee/GetAllDepartmentNames');
   }
 
-  UploadPhoto(val: any){
-    return this.http.post(this.APIurl + '/Employee/SavePhoto', val);
+  uploadPhoto(val: any){
+    return this.http.post(this.APIurl + 'employee/SavePhoto', val);
   }
 }
